@@ -26,14 +26,14 @@ class interfaces extends Controller
         return redirect(route('home'));
     }
     public function registrar_sistema_post(Request $data){
-        $existente = DB::table('sintomas')->where('nombre', $data->nombre)->where('activo', true)->first();
+        $existente = DB::table('sintomas')->where('nombre_sintoma', $data->nombre)->where('activo', true)->first();
 
 
         if ( $existente != null) {
             return redirect(route('registrar_sintomas'))->with('error', 'Ya existe un síntoma registrado con ese nombre');
         }else{
             DB::table('sintomas')->insert([
-                'nombre' =>  $data->nombre,
+                'nombre_sintoma' =>  $data->nombre,
                 'gravedad' =>  $data->gravedad
             ]);
             return redirect(route('registrar_sintomas'))->with('status', 'Síntomas registrados con éxito');
