@@ -34,7 +34,8 @@ class interfaces extends Controller
         }else{
             DB::table('sintomas')->insert([
                 'nombre_sintoma' =>  $data->nombre,
-                'gravedad' =>  $data->gravedad
+                'gravedad' =>  $data->gravedad,
+                'activo' =>true
             ]);
             return redirect(route('registrar_sintomas'))->with('status', 'Síntomas registrados con éxito');
         }
